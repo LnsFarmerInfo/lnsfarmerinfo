@@ -30,6 +30,7 @@ const Navbar = (props) => {
             <div className="hamburger-nav">
               <ul>
                 <li><a to="/">HOME</a></li>
+                {props.internship == 'true' && <li><a href='/refund-policy'>Refund Policy</a></li>}
                 {props.internship == "true" ? <></> : <><li><a href="#section-2">INNOVATIONS</a></li>
                     <li><a href="#section-3">ABOUT</a></li>
                     <li><a href='/internship'>INTERNSHIPS</a></li>
@@ -39,6 +40,7 @@ const Navbar = (props) => {
              <img src='/assets/Logo.png' alt="logo" />
             <ul>
                 <li><a href="/">HOME</a></li>
+                {props.internship == 'true' && <li><a href='/refund-policy' className='uppercase'>Refund Policy</a></li>}
                 {props.internship == "true" ? <></> : <><li><a href="#section-2">INNOVATIONS</a></li>
                     <li><a href="#section-3">ABOUT</a></li>
                     
