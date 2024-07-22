@@ -11,6 +11,7 @@ const Footer = () => {
       <div className=''>
         <h1 className='font-semibold'>Links</h1>
         <ul className='flex flex-col gap-10 pt-10'>
+          <li className='underline'><a href="/t&c">Terms & Conditions</a></li>
           <li className='underline'><a href="/privacy-policy">Privacy Policy</a></li>
           <li className='underline'><a href="/refund-policy">Refund Policy</a></li>
         </ul>
