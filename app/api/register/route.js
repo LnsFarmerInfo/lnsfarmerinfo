@@ -1,21 +1,17 @@
-import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
+import { connectDB } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
+
 await connectDB();
-
 export async function POST(req,res){
-    const userDetails = await req.json();
-    console.log(userDetails)
-    // const user  = User.create({
-    //     email : "Vinayaknawdhar003@gmail.com",
-    //     password : "12345",
-    //     firstName : "Vinayak",
-    //     lastName : "Nawdhar",
-    //     collegeName : "dsatm",
-    //     semester: 6,
-    //     courseCode : 31,
-    //     phoneNumber : "7727944259"
-    // })
-    return NextResponse.json({message : "success"})
+    let data = req.nextUrl.searchParams.get('data')
+    data = JSON.parse(data)
+    if(data.passCode == 'LNSFarmer0340%'){
+        delete data.passCode
+        User.create(data)
+        return redirect('/')
+    }else{
+        return NextResponse.json({Message : "sorry body!, i also know how to hack."})
+    }
 }
-

@@ -1,10 +1,13 @@
 'use client'
+import sha256 from "crypto-js/sha256";
+import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 const Internship = () => {
-
+  const router = useRouter();
   useEffect(() => {
     const closeBtn = document.querySelector('.close');
     const overlayEl = document.querySelector('.overlay');
@@ -24,9 +27,13 @@ const Internship = () => {
   })
   const onSubmit = async (e) => {
     e.preventDefault()
-    await axios.post('/api/register',{
-      firstName,lastName,email,phoneNumber,collegeName,courseCode : Number(duration+course),semester : Number(semester)
+    const resp = await axios.post('/api/payment', {
+      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester)
     })
+    if(resp.data.redirectUrl){
+      router.push(resp.data.redirectUrl)
+    }
+    // handleSubmit();
   }
   const [firstName, setFirstName] = useState("")
   const [lastName, setlastName] = useState("")
@@ -34,30 +41,30 @@ const Internship = () => {
   const [phoneNumber, setphoneNumber] = useState("")
   const [semester, setsemester] = useState(0)
   const [collegeName, setcollegeName] = useState("")
-  const [duration,setDuration] = useState('3')
-  const [course,setcourse] = useState('1')
-  const [price,setPrice] = useState('2999')
+  const [duration, setDuration] = useState('3')
+  const [course, setcourse] = useState('1')
+  const [price, setPrice] = useState('2999')
   return (
     <>
       <div className="overlay"></div>
       <div className="intership-form-div">
         <div className="close"><img src='/assets/close.png' alt="" /></div>
         <form action="" onSubmit={onSubmit} className='internship-form'>
-          <div><input type="text" value={firstName} onChange={(e) => {setFirstName(e.target.value)}} placeholder='your first name?' className='form-input' required />
-            <input type="text" value={lastName}  onChange={(e) => {setlastName(e.target.value)}} className='form-input' placeholder='your last name?' required /></div>
+          <div><input type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} placeholder='your first name?' className='form-input' required />
+            <input type="text" value={lastName} onChange={(e) => { setlastName(e.target.value) }} className='form-input' placeholder='your last name?' required /></div>
           <select className='form-input' value={course} onChange={e => setcourse(e.target.value)} name="" id="" required>
             <option value="1">Frontend Development</option>
             <option value="2">Backend Development</option>
             <option value="3">Machine Learning</option>
           </select>
-          <select className='form-input' value={duration} onChange={e => {setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999')}} name="" id="" required>
+          <select className='form-input' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="" required>
             <option value="3">3 Months</option>
             <option value="6">6 Months</option>
           </select>
-          <input className='form-input' value={email} onChange={(e)=>{setemail(e.target.value)}} type="email" name="email" placeholder='your email address?' id="" />
-          <input className='form-input' value={phoneNumber} onChange={(e) => {setphoneNumber(e.target.value)}} type="text" name="phone-number" placeholder='your Phone Number?' id="" />
-          <input className='form-input' value={collegeName} onChange={e => {setcollegeName(e.target.value)}} type="text" name="college-name" placeholder='your College name?' id="" />
-          <input className='form-input' value={semester} onChange={e => {setsemester(e.target.value)}} type="number" name="semester" placeholder='your Current Semester?' id="" max={8} min={1} />
+          <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" />
+          <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" />
+          <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" />
+          <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="" max={8} min={1} />
           <h1 className='text-2xl my-10 font-semibold'>Price :{price}</h1>
           <button type="submit">Pay Now</button>
         </form>
