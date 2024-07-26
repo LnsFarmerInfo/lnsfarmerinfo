@@ -30,7 +30,7 @@ export async function POST(req, res) {
       dataBase64 + "/pg/v1/pay" + process.env.SALT_KEY;
     const dataSha256 = sha256(fullURL);
   
-    const checksum = dataSha256 + "###" + process.env.SALT_INDEX;
+    const checksum = dataSha256 + "###" + process.env.SALT_INDEX.toString();
     console.log(checksum)
     const UAT_PAY_API_URL =
       "https://api.phonepe.com/apis/hermes/pg/v1/pay";
