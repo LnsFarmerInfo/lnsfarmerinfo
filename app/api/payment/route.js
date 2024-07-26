@@ -13,7 +13,7 @@ export async function POST(req, res) {
       // amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
       amount : 999,
       name: "Vinayak",
-      redirectUrl: `http://localhost:3000/api/register?data=${JSON.stringify(request)}`,
+      redirectUrl: `http://lnsfarmerinfo.com/api/register?data=${JSON.stringify(request)}`,
       redirectMode: "POST",
       mobileNumber: "7727944259",
       paymentInstrument: {
