@@ -11,11 +11,14 @@ export async function POST(req,res){
     let data = req.nextUrl.searchParams.get('data')
     data = JSON.parse(data)
     console.log(data)
-    if(data.passCode == 'LNSFarmer0340%'){
+    console.log(request.get('code'))
+    if(data.passCode == 'LNSFarmer0340%' && request.get('code') == 'PAYMENT_SUCCESS'){
         delete data.passCode
-        User.create(data)
-        return redirect('/')
-    }else{
-        return NextResponse.json({Message : "sorry body!, i also know how to hack."})
+        try{
+            User.create(data)
+        }catch(e){
+            console.log(e.message)
+        }
     }
+    return redirect('/')
 }

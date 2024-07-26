@@ -13,7 +13,7 @@ export async function POST(req, res) {
       // amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
       amount : 999,
       name: "Vinayak",
-      redirectUrl: `https://lnsfarmerinfo.com/api/register?data=${JSON.stringify(request)}`,
+      redirectUrl: `http://localhost:3000/api/register?data=${JSON.stringify(request)}`,
       redirectMode: "POST",
       mobileNumber: "7727944259",
       paymentInstrument: {
@@ -33,11 +33,11 @@ export async function POST(req, res) {
     const checksum = dataSha256 + "###" + process.env.SALT_INDEX.toString();
     console.log(checksum)
     const UAT_PAY_API_URL =
-      "https://api.phonepe.com/apis/hermes/pg/v1/pay";
+      "https://api-preprod.phonepe.com/apis/hermes/pg/v1/pay";
   
     try {
       const response = await axios.post(
-        UAT_PAY_API_URL,
+        process.env.PHONEPE_URL.toString(),
         {
           request: dataBase64,
           data : request
