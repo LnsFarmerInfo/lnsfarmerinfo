@@ -10,10 +10,10 @@ export async function POST(req, res) {
     const payload = {
       merchantId: process.env.MERCHANT_ID,
       merchantTransactionId: transactionid,
-      // amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
-      amount : 999,
+      amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
+      // amount : 999,
       name: "Vinayak",
-      redirectUrl: `http://localhost:3000/api/register?data=${JSON.stringify(request)}`,
+      redirectUrl: `${process.env.REDIRECT_URL}/api/register?data=${JSON.stringify(request)}`,
       redirectMode: "POST",
       mobileNumber: "7727944259",
       paymentInstrument: {
