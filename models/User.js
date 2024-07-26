@@ -36,6 +36,10 @@ const UserSchema = new Schema({
     collegeName : {
         type : String,
         required : true
+    },
+    transactionid : {
+      type : String,
+      required : true
     }
   },
   {
