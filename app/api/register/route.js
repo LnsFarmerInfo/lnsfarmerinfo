@@ -6,8 +6,8 @@ import { redirect } from "next/navigation";
 await connectDB();
 export async function POST(req,res){
     const request = await req.formData();
-    console.log(request)
     let data = req.nextUrl.searchParams.get('data')
+    console.log(data);
     data = JSON.parse(data)
     console.log(data)
     console.log(request.get('code'))
