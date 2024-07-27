@@ -14,7 +14,8 @@ export async function POST(req,res){
     if(data.passCode == 'lnsfarmerinternship' && request.get('code') == 'PAYMENT_SUCCESS'){
         delete data.passCode
         try{
-            User.create(data)
+           const resp = await User.create(data)
+           console.log(resp)
         }catch(e){
             console.log(e.message)
         }
