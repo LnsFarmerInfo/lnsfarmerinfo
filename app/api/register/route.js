@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 
 await connectDB();
 export async function POST(req,res){
-    console.log(req.nextUrl)
     const request = await req.formData();
     console.log(request)
     let data = req.nextUrl.searchParams.get('data')

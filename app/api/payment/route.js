@@ -11,9 +11,9 @@ export async function POST(req, res) {
       merchantId: process.env.MERCHANT_ID,
       merchantTransactionId: transactionid,
       // amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
-      amount : 999,
+      amount : 100,
       name: "Vinayak",
-      redirectUrl: `${process.env.REDIRECT_URL}/api/register?data=${JSON.stringify(request)}`,
+      redirectUrl: `${process.env.REDIRECT_URL}/api/register?data="${JSON.stringify(request)}"`,
       redirectMode: "POST",
       mobileNumber: "7727944259",
       paymentInstrument: {
