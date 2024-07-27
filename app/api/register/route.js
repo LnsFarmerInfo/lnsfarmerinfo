@@ -11,7 +11,7 @@ export async function POST(req,res){
     data = JSON.parse(data)
     console.log(data)
     console.log(request.get('code'))
-    if(data.passCode == 'LNSFarmer0340%' && request.get('code') == 'PAYMENT_SUCCESS'){
+    if(data.passCode == 'lnsfarmerinternship' && request.get('code') == 'PAYMENT_SUCCESS'){
         delete data.passCode
         try{
             User.create(data)

@@ -6,7 +6,7 @@ export async function POST(req, res) {
     let request = await req.json();
     console.log(request.courseCode)
     const transactionid = "LNS-" + uuidv4().toString(36).slice(-12);
-    request = {...request,transactionid,passCode : "LNSFarmer0340%"}
+    request = {...request,transactionid,passCode : "lnsfarmerinternship"}
     const payload = {
       merchantId: process.env.MERCHANT_ID,
       merchantTransactionId: transactionid,
