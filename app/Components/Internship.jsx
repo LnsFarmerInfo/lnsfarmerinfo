@@ -28,13 +28,15 @@ const Internship = () => {
   })
   const onSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     const resp = await axios.post('/api/payment', {
-      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester),usn : usn.toUpperCase()
+      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester), usn: usn.toUpperCase()
     })
-    if(resp.data.message == 'user already exists'){
+    setLoading(false)
+    if (resp.data.message == 'user already exists') {
       toast.error("user already exists")
     }
-    else if(resp.data.message == 'failed'){
+    else if (resp.data.message == 'failed') {
       toast.error("some error occured 🚫")
     }
     else if (resp.data.redirectUrl) {
@@ -52,7 +54,7 @@ const Internship = () => {
   const [duration, setDuration] = useState('')
   const [course, setcourse] = useState('1')
   const [price, setPrice] = useState('2999')
-
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <Toaster />
@@ -86,7 +88,9 @@ const Internship = () => {
           <label htmlFor="your current semester"></label>
           <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} />
           <h1 className='text-2xl my-10 font-semibold'>Price :{price}</h1>
-          <button type="submit">Pay Now</button>
+          <div className="flex justify-center items-center">
+            {loading == true ? <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" className="h-16"></img> : <button type="submit">Pay Now</button>}
+          </div>
         </form>
       </div>
       <div className="internship">
