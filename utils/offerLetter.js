@@ -30,7 +30,7 @@ function generateWatermark(usn) {
 
 async function generateCertificate(name, usn, position, startDate) {
   // Load the HTML template
-  const templatePath = path.join(process.cwd(), 'utils', 'offerletter.ejs');
+  const templatePath = path.join(process.cwd(), "utils", "offerletter.ejs");
   const template = fs.readFileSync(templatePath, "utf-8");
 
   // Render the template with the provided name
@@ -41,9 +41,16 @@ async function generateCertificate(name, usn, position, startDate) {
     position,
     startDate,
   });
-
+  let browser = null;
   // Launch Puppeteer to convert HTML to PDF
-  const browser = await puppeteer.launch();
+  if (process.env.puppeteer_path) {
+     browser = await puppeteer.launch({
+      executablePath:
+        "/vercel/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
+    });
+  }else{
+    browser = await puppeteer.launch();
+  }
   const page = await browser.newPage();
 
   await page.setContent(html);
