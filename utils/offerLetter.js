@@ -46,7 +46,7 @@ async function generateCertificate(name, usn, position, startDate) {
   if (process.env.puppeteer_path) {
      browser = await puppeteer.launch({
       executablePath:
-        "/vercel/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
+        "/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
     });
   }else{
     browser = await puppeteer.launch();
