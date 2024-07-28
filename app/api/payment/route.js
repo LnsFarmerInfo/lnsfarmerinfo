@@ -1,10 +1,16 @@
 import sha256 from "crypto-js/sha256";
 import { v4 as uuidv4 } from 'uuid';
 import { NextResponse } from "next/server";
+import User from "@/models/User";
 import axios from "axios";
+import { connectDB } from "@/lib/mongodb";
 export async function POST(req, res) {
+    await connectDB();
     let request = await req.json();
-    console.log(request.courseCode)
+    const user = await User.findOne({'email' : request.email})
+    if(user){
+      return NextResponse.json({message : "user already exists"});
+    }
     const transactionid = "LNS-" + uuidv4().toString(36).slice(-12);
     request = {...request,transactionid,passCode : "lnsfarmerinternship"}
     const payload = {
@@ -12,10 +18,10 @@ export async function POST(req, res) {
       merchantTransactionId: transactionid,
       // amount: (request.courseCode.toString()[0] == '3' ? 2999:5999)*100,
       amount : 100,
-      name: "Vinayak",
+      name: request.firstName + request.lastName,
       redirectUrl: `${process.env.REDIRECT_URL}/api/register?data=${JSON.stringify(request)}`,
       redirectMode: "POST",
-      mobileNumber: "7727944259",
+      mobileNumber: request.phoneNumber,
       paymentInstrument: {
         type: "PAY_PAGE",
       },

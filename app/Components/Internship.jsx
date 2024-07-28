@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import toast, { Toaster } from 'react-hot-toast';
 const Internship = () => {
   const router = useRouter();
   useEffect(() => {
@@ -28,43 +29,62 @@ const Internship = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     const resp = await axios.post('/api/payment', {
-      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester)
+      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester),usn : usn.toUpperCase()
     })
-    if(resp.data.redirectUrl){
+    if(resp.data.message == 'user already exists'){
+      toast.error("user already exists")
+    }
+    else if(resp.data.message == 'failed'){
+      toast.error("some error occured 🚫")
+    }
+    else if (resp.data.redirectUrl) {
       router.push(resp.data.redirectUrl)
     }
     // handleSubmit();
   }
   const [firstName, setFirstName] = useState("")
   const [lastName, setlastName] = useState("")
+  const [usn, setusn] = useState("")
   const [email, setemail] = useState("")
   const [phoneNumber, setphoneNumber] = useState("")
-  const [semester, setsemester] = useState(0)
+  const [semester, setsemester] = useState("")
   const [collegeName, setcollegeName] = useState("")
-  const [duration, setDuration] = useState('3')
+  const [duration, setDuration] = useState('')
   const [course, setcourse] = useState('1')
   const [price, setPrice] = useState('2999')
+
   return (
     <>
+      <Toaster />
       <div className="overlay"></div>
       <div className="intership-form-div">
         <div className="close"><img src='/assets/close.png' alt="" /></div>
         <form action="" onSubmit={onSubmit} className='internship-form'>
           <div><input type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} placeholder='your first name?' className='form-input' required />
             <input type="text" value={lastName} onChange={(e) => { setlastName(e.target.value) }} className='form-input' placeholder='your last name?' required /></div>
-          <select className='form-input' value={course} onChange={e => setcourse(e.target.value)} name="" id="" required>
-            <option value="1">Frontend Development</option>
-            <option value="2">Backend Development</option>
-            <option value="3">Machine Learning</option>
-          </select>
-          <select className='form-input' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="" required>
-            <option value="3">3 Months</option>
-            <option value="6">6 Months</option>
-          </select>
+          <input className='form-input' value={usn} onChange={(e) => { setusn(e.target.value) }} type="text" name="usn" placeholder='your USN?' id="" />
+          <div className="flex flex-col !gap-2 !mb-4">
+            <label htmlFor="course" className="text-2xl text-left"> Select the domain : </label>
+            <select className='form-input !my-0' value={course} onChange={e => setcourse(e.target.value)} name="" id="course" required>
+              <option value="1">Frontend Development</option>
+              <option value="2">Backend Development</option>
+              <option value="3">Machine Learning</option>
+            </select>
+          </div>
+          <div className="flex flex-col !gap-2">
+            <label htmlFor="duration" className="text-2xl text-left"> Select the domain : </label>
+            <select className='form-input !my-0' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="duration" required>
+              <option value="1">15 Weeks</option>
+              <option value="2">2 Months</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+            </select>
+          </div>
           <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" />
           <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" />
           <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" />
-          <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="" max={8} min={1} />
+          <label htmlFor="your current semester"></label>
+          <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} />
           <h1 className='text-2xl my-10 font-semibold'>Price :{price}</h1>
           <button type="submit">Pay Now</button>
         </form>

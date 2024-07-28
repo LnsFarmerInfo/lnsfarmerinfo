@@ -21,6 +21,10 @@ const UserSchema = new Schema({
       type: String,
       required: [true, "last Name is required"]
     },
+    usn : {
+      type : String,
+      required : [true,"usn is required"]
+    },
     courseCode : {
         type : Number,
         required : true
