@@ -45,8 +45,8 @@ async function generateCertificate(name, usn, position, startDate) {
   // Launch Puppeteer to convert HTML to PDF
   if (process.env.puppeteer_path) {
      browser = await puppeteer.launch({
-      executablePath:
-        "/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
+      executablePath:"/vercel/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
+        headless : true
     });
   }else{
     browser = await puppeteer.launch();
