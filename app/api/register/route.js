@@ -2,11 +2,11 @@ import User from "@/models/User";
 import { connectDB } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
-import { useRouter } from "next/navigation";
+
 
 await connectDB();
 export async function POST(req,res){
-    const router = useRouter();
+    let redirectPath = null
     const request = await req.formData();
     let data = req.nextUrl.searchParams.get('data')
     data = JSON.parse(data)
@@ -16,11 +16,14 @@ export async function POST(req,res){
         delete data.passCode
         try{
            await User.create(data);
-           console.log("hello")
-           router.push('/payment/success')
+           redirectPath = '/payment/success'
         }catch(e){
-            console.log("error --- " + e)
-            return redirect('/payment/failure')
+            console.log(e)
+            redirectPath = '/payment/failure'
+        }finally{
+            if(redirectPath){
+                return redirect(redirectPath)
+            }
         }
     }else{
         return redirect('/payment/failure')
