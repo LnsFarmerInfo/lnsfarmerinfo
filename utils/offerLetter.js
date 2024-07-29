@@ -4,71 +4,71 @@ import fs from "fs";
 import path from "path";
 import { createCanvas } from "canvas";
 import nodemailer from "nodemailer";
+import axios from "axios";
+// function generateWatermark(usn) {
+//   const width = 200; // Width of the image
+//   const height = 200; // Height of the image
+//   const canvas = createCanvas(width, height);
+//   const ctx = canvas.getContext("2d");
 
-function generateWatermark(usn) {
-  const width = 200; // Width of the image
-  const height = 200; // Height of the image
-  const canvas = createCanvas(width, height);
-  const ctx = canvas.getContext("2d");
+//   // Set background color
+//   ctx.fillStyle = "transparent"; // White background
+//   ctx.fillRect(0, 0, width, height);
 
-  // Set background color
-  ctx.fillStyle = "transparent"; // White background
-  ctx.fillRect(0, 0, width, height);
+//   // Draw watermark text
+//   ctx.font = "bold 30px Arial";
+//   ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Semi-transparent black
+//   ctx.textAlign = "center";
+//   ctx.textBaseline = "middle";
+//   ctx.translate(width / 2, height / 2);
+//   ctx.rotate(-Math.PI / 4);
+//   ctx.fillText(usn.toUpperCase(), 0, 0);
 
-  // Draw watermark text
-  ctx.font = "bold 30px Arial";
-  ctx.fillStyle = "rgba(0, 0, 0, 0.1)"; // Semi-transparent black
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.translate(width / 2, height / 2);
-  ctx.rotate(-Math.PI / 4);
-  ctx.fillText(usn.toUpperCase(), 0, 0);
+//   const base64Image = canvas.toDataURL("image/png");
+//   return base64Image;
+// }
 
-  const base64Image = canvas.toDataURL("image/png");
-  return base64Image;
-}
+// async function generateCertificate(name, usn, position, startDate) {
+//   // Load the HTML template
+//   const templatePath = path.join(process.cwd(), "utils", "offerletter.ejs");
+//   const template = fs.readFileSync(templatePath, "utf-8");
 
-async function generateCertificate(name, usn, position, startDate) {
-  // Load the HTML template
-  const templatePath = path.join(process.cwd(), "utils", "offerletter.ejs");
-  const template = fs.readFileSync(templatePath, "utf-8");
-
-  // Render the template with the provided name
-  const html = ejs.render(template, {
-    name,
-    watermark: generateWatermark(usn),
-    usn: usn.toUpperCase(),
-    position,
-    startDate,
-  });
+//   // Render the template with the provided name
+//   const html = ejs.render(template, {
+//     name,
+//     watermark: generateWatermark(usn),
+//     usn: usn.toUpperCase(),
+//     position,
+//     startDate,
+//   });
   
-  const browser = await puppeteer.launch();
+//   const browser = await puppeteer.launch();
 
-  const page = await browser.newPage();
+//   const page = await browser.newPage();
 
-  await page.setContent(html);
-  const pdfBuffer = await page.pdf({
-    format: "A4",
-    printBackground: true,
-    margin: {
-      top: "0px",
-      right: "0px",
-      bottom: "0px",
-      left: "0px",
-    },
-    scale: 1, // Adjust scale if necessary
-    width: "210mm", // A4 width
-    height: "297mm",
-  });
+//   await page.setContent(html);
+//   const pdfBuffer = await page.pdf({
+//     format: "A4",
+//     printBackground: true,
+//     margin: {
+//       top: "0px",
+//       right: "0px",
+//       bottom: "0px",
+//       left: "0px",
+//     },
+//     scale: 1, // Adjust scale if necessary
+//     width: "210mm", // A4 width
+//     height: "297mm",
+//   });
 
-  await browser.close();
-  return pdfBuffer;
-  // Save the PDF to a file
-  // const outputPath = path.join(__dirname, `offerletter_${usn}.pdf`);
-  // fs.writeFileSync(outputPath, pdfBuffer);
+//   await browser.close();
+//   return pdfBuffer;
+//   // Save the PDF to a file
+//   // const outputPath = path.join(__dirname, `offerletter_${usn}.pdf`);
+//   // fs.writeFileSync(outputPath, pdfBuffer);
 
-  // console.log(`Certificate generated: ${outputPath}`);
-}
+//   // console.log(`Certificate generated: ${outputPath}`);
+// }
 const transporter = nodemailer.createTransport({
   service: "gmail", // or any other email service
   auth: {
@@ -76,6 +76,12 @@ const transporter = nodemailer.createTransport({
     pass: "hjxmryqcdvbckcfv",
   },
 });
+async function generateCertificate(name,usn,role,startDate){
+  const resp = await axios.post('https://certificate-generator-2v52.onrender.com/generate-certificate',{
+    name,usn,role,startDate
+  })
+  return resp.data.data
+}
 
 export async function generateAndSendPdf(name, usn, role, startDate, email) {
   const mailOptions = {
