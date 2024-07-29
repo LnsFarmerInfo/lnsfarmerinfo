@@ -103,7 +103,7 @@ LNS FarmerInfo LLP
     attachments: [
       {
         filename: `offerletter_${usn}.pdf`,
-        content: await generateCertificate(name, usn, role, startDate),
+        content: await Buffer.from(await generateCertificate(name, usn, role, startDate)),
         encoding: "base64", // optional, but you can specify encoding
       },
     ],

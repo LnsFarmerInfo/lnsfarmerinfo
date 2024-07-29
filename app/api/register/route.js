@@ -23,7 +23,7 @@ export async function POST(req, res) {
         "Backend Intern",
         "29th Sept,2024",
         data.email
-      );
+      ).then((res) => console.log("mail sent"))
       await User.create(data);
       redirectPath = "/payment/success";
     } catch (e) {
