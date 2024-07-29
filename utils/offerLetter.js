@@ -41,18 +41,9 @@ async function generateCertificate(name, usn, position, startDate) {
     position,
     startDate,
   });
-  let browser = null;
-  // Launch Puppeteer to convert HTML to PDF
-  if (process.env.puppeteer_path) {
-    browser = await puppeteer.launch({
-      executablePath:
-        "/vercel/.cache/puppeteer/chrome/linux-127.0.6533.72/chrome-linux64/chrome",
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
-  } else {
-    browser = await puppeteer.launch();
-  }
+  
+  const browser = await puppeteer.launch();
+
   const page = await browser.newPage();
 
   await page.setContent(html);
