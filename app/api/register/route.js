@@ -17,7 +17,7 @@ export async function POST(req, res) {
   ) {
     delete data.passCode;
     try {
-      await generateAndSendPdf(
+       generateAndSendPdf(
         data.firstName + " " + data.lastName,
         data.usn,
         "Backend Intern",
