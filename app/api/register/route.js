@@ -2,6 +2,7 @@ import User from "@/models/User";
 import { connectDB } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
+import axios from "axios";
 
 await connectDB();
 export async function POST(req, res) {
