@@ -20,7 +20,7 @@ export async function POST(req, res) {
       axios.post(
         "https://certificate-generator-2v52.onrender.com/generate-certificate",
         {
-          name : data.name,
+          name : data.firstName + " " + data.lastName,
           email : data.email,
           role : "Full Stack Intern",
           startDate : "30th Sept, 2029",
