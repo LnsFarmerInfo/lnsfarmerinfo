@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='flex justify-center flex-col items-center lg:flex-row'>
       <div className='flex flex-col text-center justify-center items-center'>
         <img src='/assets/Logo.png' alt="" />
         <h1>© 2023 LNS FarmerInfo LLP, All Rights Reserved.</h1>

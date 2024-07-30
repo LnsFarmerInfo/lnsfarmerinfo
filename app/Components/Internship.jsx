@@ -10,6 +10,9 @@ import toast, { Toaster } from 'react-hot-toast';
 const Internship = () => {
   const router = useRouter();
   useEffect(() => {
+    axios.get('/api/get-count')
+    .then(resp => resp.data.count)
+    .then(count => {setInternCount(12+count)})
     const closeBtn = document.querySelector('.close');
     const overlayEl = document.querySelector('.overlay');
     const internshipDiv = document.querySelector('.intership-form-div')
@@ -55,6 +58,33 @@ const Internship = () => {
   const [course, setcourse] = useState('1')
   const [price, setPrice] = useState('2999')
   const [loading, setLoading] = useState(false);
+  const [internCount,setInternCount] = useState(12)
+  const [internships] = useState([
+    {
+      image_url: "https://www.syncfusion.com/blogs/wp-content/uploads/2020/07/Top-6-Front-End-Web-Development-Tools-to-Increase-Your-Productivity-in-2020-1.jpg",
+      title: "Front-end Web Development Intern",
+      description: "Join our team as a Front-End Web Development Intern and immerse yourself in creating visually appealing and highly functional user interfaces. This role focuses on developing the client-side of web applications, using modern technologies to ensure responsive and user-friendly designs.",
+      responsibilities: ['Design and implement user interfaces using HTML, CSS, and JavaScript.', 'Collaborate with designers and back-end developers to create seamless web experiences.', 'Optimize web applications for speed and performance.', 'Conduct user testing and gather feedback to enhance UI/UX.'],
+      training_program: ['Intensive workshops on front-end technologies and frameworks like React or Vue.js.', 'Hands-on projects to build responsive and interactive web interfaces.', 'Mentorship sessions on best practices in user experience and accessibility.'],
+      price : 3499
+    },
+    {
+      image_url: "/assets/backend.png",
+      title: "Back-End Web Development Intern",
+      description: "As a Back-End Web Development Intern, you'll be responsible for the server-side logic and database management of web applications. This internship offers hands-on experience in building and maintaining robust back-end systems that power dynamic web applications.",
+      responsibilities: ['Develop and manage server-side components using languages such as Node.js, Python, or Ruby.', 'Work with databases (SQL or NoSQL) to design and implement efficient data storage solutions.', 'Integrate APIs and third-party services into web applications.', 'Troubleshoot and optimize server performance and security.'],
+      training_program: ['Training on server-side programming languages and database management systems.', 'Projects focused on API development and integration.', 'Sessions on performance optimization and security best practices.'],
+      price : 3499
+    },
+    {
+      image_url: "/assets/machinelearning.jpg",
+      title: "Machine Learning Engineer Intern",
+      description: "As a Machine Learning Engineer Intern, you'll focus on developing and optimizing machine learning models that can be integrated into various applications. This role is ideal for those looking to deepen their knowledge of machine learning algorithms and data analysis techniques.",
+      responsibilities: ['Design, train, and evaluate machine learning models for specific applications.', 'Analyze and preprocess data to improve model accuracy and performance.', 'Work with software engineers to integrate machine learning models into production systems.', 'Conduct experiments and document findings to support ongoing development.'],
+      training_program: ['Comprehensive training on machine learning algorithms and techniques.', 'Practical experience with data preprocessing, model training, and evaluation.', 'Workshops on deploying machine learning models in real-world scenarios.'],
+      price : 3999
+    },
+  ])
   return (
     <>
       <Toaster />
@@ -96,61 +126,42 @@ const Internship = () => {
       <div className="internship">
         <Navbar internship='true' />
         <div className='internship-container'>
+          <div className="mb-10">
+            <h1 className="text-2xl text-center bg-green-50 py-5 font-semibold">Live count of interns : {internCount}</h1>
+          </div>
+          <div className="flex flex-wrap gap-10 justify-center">
+            {
+              internships.map((internship, index) => (
+                <div className="internship-card" key={index}>
+                  <div className="image"><img src={internship.image_url} className="!object-center !object-cover !h-[250px]" alt="" /></div>
+                  <div className="right-side">
+                    <h1 className="text-2xl">{internship.title}</h1>
+                    <p className="text-lg">{internship.description}</p>
+                    <h1 className='text-xl'>Responsibilities</h1>
+                    <ul className='text-lg list-decimal pl-10'>
+                      {internship.responsibilities.map((responsibility,index) => (
+                        <li key={index}>{responsibility}</li>
+                      ))}
+                    </ul>
+                    <h1 className='text-xl'>Training</h1>
+                    <ul className='text-lg list-decimal pl-10'>
+                      {internship.training_program.map((training,index) => (
+                        <li key={index}>{training}</li>
+                      ))}
+                    </ul>
+                    <h1 className='text-xl'>Perks</h1>
+                    <p className="text-lg">Letter of Recommendation, Real world projects, Internship Compeletion Letter</p>
+                    <h2 className='text-lg mt-5'>Training + Internship (15 weeks) fees - <span className="line-through">Rs. 4599/-</span></h2>
+                    <h2 className='text-lg font-semibold mt-1'>Early bird offer (first 30 students per domain) - <span className="text-xl">Rs. {internship.price}/-</span></h2>
+                    <button className='!bottom-0 !text-3xl'>Apply now </button>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+        <div>
 
-          <div className="internship-card">
-            <div className="image"><img src="https://i.ytimg.com/vi/MsnQ5uepIaE/maxresdefault.jpg" alt="" /></div>
-            <div className="right-side">
-              <h1>Front-end Development</h1>
-              <h3>Bridging Imagination with User Interface Mastery!</h3>
-              <p> In the realm of Front End Development, we're dedicated to shaping the user experience, pixel by pixel. Join our course cum internship program and unlock the art of creating visually stunning, user-friendly websites and applications. You'll master the latest web technologies, responsive design, and interactive user interfaces. Your journey begins here to make the web a more engaging, accessible, and beautiful place.</p>
-              <h1 className='!text-md'>Perks</h1>
-              <ul className='text-lg list-decimal pl-10 font-bold'>
-                <li>Letter of recommendation</li>
-                <li>Hands on project</li>
-                <li>Working on real world projects</li>
-                <li>Internship completion Letter</li>
-              </ul>
-              <h2 className='text-xl font-semibold mt-10'>Training + Internship (6 months) fees - Rs. 5999/-</h2>
-              <h2 className='text-xl font-semibold mt-5'>Training + Internship (3 months) fees - Rs. 2999/-</h2>
-              <button className='!bottom-0'>Apply now </button>
-            </div>
-          </div>
-          <div className="internship-card">
-            <div className="image"><img src="https://plopdo.com/wp-content/uploads/2021/09/Backend-development.png" alt="" /></div>
-            <div className="right-side">
-              <h1>Backend-end Development</h1>
-              <h3>Behind Every Great App, There's Back End Magic!</h3>
-              <p>Dive into the world of Back End Development and discover the engine that drives innovation. Our course cum internship program will immerse you in the world of server-side technologies, databases, and application architecture. Learn how to build robust and efficient systems that power the digital world. Join us to become the backbone of cutting-edge applications and bring your ideas to life through the magic of code.</p>
-              <h1 className='!text-md'>Perks</h1>
-              <ul className='text-lg list-decimal pl-10 font-bold'>
-                <li>Letter of recommendation</li>
-                <li>Hands on project</li>
-                <li>Working on real world projects</li>
-                <li>Internship completion Letter</li>
-              </ul>
-              <h2 className='text-xl font-semibold mt-10'>Training + Internship (6 months) fees - Rs. 5999/-</h2>
-              <h2 className='text-xl font-semibold mt-5'>Training + Internship (3 months) fees - Rs. 2999/-</h2>
-              <button className='!bottom-0'>Apply now </button>
-            </div>
-          </div>
-          <div className="internship-card">
-            <div className="image"><img src="https://www.fsm.ac.in/blog/wp-content/uploads/2022/08/ml-e1610553826718.jpg" alt="" /></div>
-            <div className="right-side">
-              <h1>machine learning</h1>
-              <h3>Unleash the Power of AI Transforming Data to Insights!</h3>
-              <p> Embark on a journey of discovery with our Machine Learning course cum internship opportunity. Here, you'll delve into the exciting universe of artificial intelligence and data science. Gain expertise in building predictive models, uncover hidden patterns, and develop intelligent solutions. Join us to harness the immense potential of AI and shape the future.</p>
-              <h1 className='!text-md'>Perks</h1>
-              <ul className='text-lg list-decimal pl-10 font-bold'>
-                <li>Letter of recommendation</li>
-                <li>Hands on project</li>
-                <li>Working on real world projects</li>
-                <li>Internship completion Letter</li>
-              </ul>
-              <h2 className='text-xl font-semibold mt-10'>Training + Internship (6 months) fees - Rs. 5999/-</h2>
-              <h2 className='text-xl font-semibold mt-5'>Training + Internship (3 months) fees - Rs. 2999/-</h2>
-              <button className='!bottom-0'>Apply now </button>
-            </div>
-          </div>
         </div>
         <Footer />
       </div>
