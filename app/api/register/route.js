@@ -2,7 +2,6 @@ import User from "@/models/User";
 import { connectDB } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
-import { generateAndSendPdf } from "@/utils/offerLetter";
 
 await connectDB();
 export async function POST(req, res) {
@@ -17,13 +16,16 @@ export async function POST(req, res) {
   ) {
     delete data.passCode;
     try {
-       generateAndSendPdf(
-        data.firstName + " " + data.lastName,
-        data.usn,
-        "Backend Intern",
-        "29th Sept,2024",
-        data.email
-      ).then((res) => console.log("mail sent"))
+      axios.post(
+        "https://certificate-generator-2v52.onrender.com/generate-certificate",
+        {
+          name : data.name,
+          email : data.email,
+          role : "Full Stack Intern",
+          startDate : "30th Sept, 2029",
+          usn : data.usn
+        }
+      ).then((resp) => console.log(resp.data.message))
       await User.create(data);
       redirectPath = "/payment/success";
     } catch (e) {
