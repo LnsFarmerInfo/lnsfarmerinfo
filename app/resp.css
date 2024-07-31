@@ -132,4 +132,48 @@
         margin-bottom: 50px;
     }
 
+    .intership-form-div{
+        padding: 50px 0px;
+        position: fixed;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.856);
+        z-index:101;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+      .form-input{
+        width: 80%;
+        border: 2px solid black;
+        font-size: 15px;
+        padding: 5px 10px;
+        margin: 10px 0px;
+      }
+      .internship-form button{
+        font-size: 20px;
+        border: 2px solid black;
+        padding: 10px 25px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+      }
+      .internship-form div{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+      }
+      .intership-form-div .close{
+        position: absolute;
+        font-size: 1.0vw;
+        right: 35px;
+        top: 20px;
+        height: 30px;
+        aspect-ratio: 0.7;
+        cursor: pointer;
+      }
 }

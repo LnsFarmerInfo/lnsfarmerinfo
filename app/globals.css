@@ -498,7 +498,7 @@ footer h3{
 }
 
 .form-input{
-  width: 80%;
+  width: 100%;
   border: 2px solid black;
   font-size: 1vw;
   padding: 5px 10px;
@@ -518,7 +518,7 @@ footer h3{
 }
 .intership-form-div .close{
   position: absolute;
-  font-size: 1.5vw;
+  font-size: 1.0vw;
   right: 35px;
   top: 20px;
   height: 50px;

@@ -114,7 +114,7 @@ const Internship = () => {
             </select>
           </div>
           <div className="flex flex-col !gap-2">
-            <label htmlFor="duration" className="text-2xl text-left"> Select the domain : </label>
+            <label htmlFor="duration" className="text-2xl text-left"> Select the duration : </label>
             <select className='form-input !my-0' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="duration" required>
               <option value="1">15 Weeks</option>
               <option value="2">1 Months</option>
@@ -132,7 +132,7 @@ const Internship = () => {
         </form>
       </div>
       <div className="internship">
-        <Navbar internship='true' />
+        <Navbar internship='true' />  
         <div className='internship-container'>
           <div className="mb-10">
             <h1 className="text-2xl text-center bg-green-50 py-5 font-semibold">Live count of interns : {internCount}</h1>
