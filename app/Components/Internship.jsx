@@ -77,6 +77,14 @@ const Internship = () => {
       price : 3499
     },
     {
+      image_url: "https://miro.medium.com/v2/resize:fit:1400/0*cl7fc6pt1MHjIF4K.png",
+      title: "FullStack Web Development Intern",
+      description: "Join our team as a Full Stack Web Development Intern and dive into both the client and server sides of web applications. This role involves developing and integrating both front-end and back-end technologies to create comprehensive and dynamic web solutions.",
+      responsibilities: ['Design and develop user interfaces using HTML, CSS, and JavaScript.', 'Build and maintain server-side applications and APIs using languages and frameworks such as Node.js, Python, or Ruby on Rails.', 'Collaborate with front-end developers, designers, and other team members to create cohesive and efficient web applications.', 'Optimize web applications for performance, scalability, and security.'],
+      training_program: ['Intensive workshops on both front-end and back-end technologies, including frameworks like React, Vue.js, Node.js, and Express.', 'Hands-on projects to build full-stack applications from scratch.', 'Mentorship sessions on best practices in system design, database management, and web security.'],
+      price : 3999  
+    },
+    {
       image_url: "/assets/machinelearning.jpg",
       title: "Machine Learning Engineer Intern",
       description: "As a Machine Learning Engineer Intern, you'll focus on developing and optimizing machine learning models that can be integrated into various applications. This role is ideal for those looking to deepen their knowledge of machine learning algorithms and data analysis techniques.",
@@ -84,6 +92,7 @@ const Internship = () => {
       training_program: ['Comprehensive training on machine learning algorithms and techniques.', 'Practical experience with data preprocessing, model training, and evaluation.', 'Workshops on deploying machine learning models in real-world scenarios.'],
       price : 3999
     },
+    
   ])
   return (
     <>
@@ -98,26 +107,25 @@ const Internship = () => {
           <div className="flex flex-col !gap-2 !mb-4">
             <label htmlFor="course" className="text-2xl text-left"> Select the domain : </label>
             <select className='form-input !my-0' value={course} onChange={e => setcourse(e.target.value)} name="" id="course" required>
-              <option value="1">Frontend Development</option>
-              <option value="2">Backend Development</option>
-              <option value="3">Machine Learning</option>
+              <option value="1">Frontend Web Development</option>
+              <option value="2">Backend Web Development</option>
+              <option value="3">FullStack Web Development</option>
+              <option value="4">Machine Learning</option>
             </select>
           </div>
           <div className="flex flex-col !gap-2">
             <label htmlFor="duration" className="text-2xl text-left"> Select the domain : </label>
             <select className='form-input !my-0' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="duration" required>
               <option value="1">15 Weeks</option>
-              <option value="2">2 Months</option>
-              <option value="3">3 Months</option>
-              <option value="6">6 Months</option>
+              <option value="2">1 Months</option>
             </select>
           </div>
-          <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" />
-          <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" />
-          <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" />
+          <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" required />
+          <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" required />
+          <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" required />
           <label htmlFor="your current semester"></label>
-          <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} />
-          <h1 className='text-2xl my-10 font-semibold'>Price :{price}</h1>
+          <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} required />
+          <h1 className='text-2xl my-10 font-semibold'>Pre-registation fees - Rs. 999 /-</h1>
           <div className="flex justify-center items-center">
             {loading == true ? <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" className="h-16"></img> : <button type="submit">Pay Now</button>}
           </div>
@@ -153,7 +161,7 @@ const Internship = () => {
                     <p className="text-lg">Letter of Recommendation, Real world projects, Internship Compeletion Letter</p>
                     <h2 className='text-lg mt-5'>Training + Internship (15 weeks) fees - <span className="line-through">Rs. 4599/-</span></h2>
                     <h2 className='text-lg font-semibold mt-1'>Early bird offer (first 30 students per domain) - <span className="text-xl">Rs. {internship.price}/-</span></h2>
-                    <button className='!bottom-0 !text-3xl'>Apply now </button>
+                    <button className='!bottom-0 !text-3xl' onClick={()=>{setcourse(index+1)}}>Apply now </button>
                   </div>
                 </div>
               ))

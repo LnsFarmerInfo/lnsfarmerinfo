@@ -16,7 +16,7 @@ export async function POST(req, res) {
     const payload = {
       merchantId: process.env.MERCHANT_ID,
       merchantTransactionId: transactionid,
-      amount: 3499*100,
+      amount: 999*100,
       // amount : 100,
       name: request.firstName + request.lastName,
       redirectUrl: `${process.env.REDIRECT_URL}/api/register?data=${JSON.stringify(request)}`,
