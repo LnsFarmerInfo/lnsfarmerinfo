@@ -28,8 +28,9 @@ const Navbar = (props) => {
         <nav className='navbar'>
             <div className='hamburger-icon-div'><img src='/assets/hamburger.png' className='hamburger-icon' alt="" /></div>
             <div className="hamburger-nav">
+            <img src='/assets/hamburger.png' className='h-20 p-2 absolute left-10 top-16' alt="" />
               <ul>
-                <li><a to="/">HOME</a></li>
+                <li><a href="/">HOME</a></li>
                 {props.internship == "true" ? <></> : <><li><a href="#section-2">INNOVATIONS</a></li>
                     <li><a href="#section-3">ABOUT</a></li>
                     <li><a href='/internship'>INTERNSHIPS</a></li>

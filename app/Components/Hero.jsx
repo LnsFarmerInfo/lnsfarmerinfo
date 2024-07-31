@@ -9,68 +9,69 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 const Hero = () => {
   gsap.registerPlugin(useGSAP, ScrollTrigger)
   let locoScroll;
-  useEffect(() => {
-    let locoScroll
+  // useEffect(() => {
+  //   let locoScroll;
 
-    import('locomotive-scroll').then((locomotiveModule) => {
-      locoScroll = new locomotiveModule.default({
-        el: document.querySelector('body'),
-        smooth: true,
-        smoothMobile: false,
-        resetNativeScroll: true,
-        getDirection: true,
-      })
+  //   import('locomotive-scroll').then((locomotiveModule) => {
+  //     locoScroll = new locomotiveModule.default({
+  //       el: document.querySelector('body'),
+  //       smooth: true,
+  //       smoothMobile: false,
+  //       resetNativeScroll: true,
+  //       getDirection: true,
+  //     })
 
-      locoScroll.on('scroll', () => {
-        ScrollTrigger.update()
-      })
+  //     locoScroll.on('scroll', () => {
+  //       ScrollTrigger.update()
+  //     })
 
-      ScrollTrigger.scrollerProxy('.main', {
-        scrollTop(value) {
-          return arguments.length
-            ? locoScroll.scrollTo(value, 0, 0)
-            : locoScroll.scroll.instance.scroll.y
-        },
-        getBoundingClientRect() {
-          return {
-            top: 0,
-            left: 0,
-            width: window.innerWidth,
-            height: window.innerHeight,
-          }
-        },
+  //     ScrollTrigger.scrollerProxy('.main', {
+  //       scrollTop(value) {
+  //         return arguments.length
+  //           ? locoScroll.scrollTo(value, 0, 0)
+  //           : locoScroll.scroll.instance.scroll.y
+  //       },
+  //       getBoundingClientRect() {
+  //         return {
+  //           top: 0,
+  //           left: 0,
+  //           width: window.innerWidth,
+  //           height: window.innerHeight,
+  //         }
+  //       },
 
-        pinType: document.querySelector('.main').style
-          .transform
-          ? 'transform'
-          : 'fixed',
-      })
+  //       pinType: document.querySelector('.main').style
+  //         .transform
+  //         ? 'transform'
+  //         : 'fixed',
+  //     })
 
-      ScrollTrigger.addEventListener('refresh', () => locoScroll.update())
+  //     ScrollTrigger.addEventListener('refresh', () => locoScroll.update())
 
-      ScrollTrigger.refresh()
-    })
+  //     ScrollTrigger.refresh()
+  //   })
 
-    window.addEventListener('DOMContentLoaded', () => {
-      locoScroll.update()
-    })
+  //   window.addEventListener('DOMContentLoaded', () => {
+  //     locoScroll.update()
+  //   })
 
-    window.addEventListener('resize', () => {
-      locoScroll.update()
-    })
-  }, [])
+  //   window.addEventListener('resize', () => {
+  //     locoScroll.update()
+  //   })
+  //   const navLinks = document.querySelectorAll("nav a");
+
+
+  // }, [])
 
   useEffect(() => {
     const navLinks = document.querySelectorAll("nav a");
-
     navLinks.forEach((link) => {
       link.addEventListener("click", function (e) {
         if (!(this.getAttribute("href") == '/internship')) {
           e.preventDefault();
-          locoScroll.scrollTo(
-            document.querySelector(`${this.getAttribute("href")}`),
-            "-30"
-          )
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+        },'-180');
         }
       });
     });
@@ -143,9 +144,8 @@ const Hero = () => {
       const tl4 = gsap.timeline({
         scrollTrigger: {
           trigger: ".section--4",
-          start: "top 50%",
-          end: "70% bottom",
-          scrub: 2
+          start: "10% 50%",
+          end: "70% bottom"
         }
       })
       tl4
@@ -258,7 +258,7 @@ const Hero = () => {
             <p>
               Developing a platform that links veterinary professionals with farmers to swiftly identify diseases based on early symptoms, enabling timely delivery of essential medical equipment, is at the core of our product's mission
             </p>
-            <a href="#">Learn more</a>
+     
           </div>
           <div className="product right">
             <h1>2. PLASTIC COW</h1>
@@ -269,7 +269,7 @@ const Hero = () => {
             <p>
               We're working on a product named 'Plastic Cow' designed to prevent cows from ingesting plastic and metal pieces. This innovation aims to mitigate hardware diseases by safeguarding cattle from consuming harmful materials.
             </p>
-            <a href="#">Learn more</a>
+         
           </div>
           <div className="product left">
             <h1>3. WORKSHOPS</h1>
@@ -280,7 +280,7 @@ const Hero = () => {
             <p>
               Our team actively conducts workshops highlighting the significance of IoT in agriculture. These sessions focus on showcasing various sensors applicable in agricultural practices, emphasizing their practical usage and benefits.
             </p>
-            <a href="#">Learn more</a>
+         
           </div>
           <div className="product right">
             <h1>4. MOBILE APPLICATION</h1>
@@ -291,7 +291,7 @@ const Hero = () => {
             <p>
               We are currently developing a mobile application, funded by the National Institute of Veterinary Epidemiology and Disease Informatics (NIVEDI), that aims to aid veterinary professionals in the early-stage diagnosis of Haemoprotozoan diseases, thereby enhancing early detection capabilities within the veterinary field.
             </p>
-            <a href="#">Learn more</a>
+         
           </div>
         </section>
         <section id="section-3" className="section--4">
