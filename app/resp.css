@@ -148,7 +148,7 @@
         display: none;
       }
       .form-input{
-        width: 80%;
+        width: 90%;
         border: 2px solid black;
         font-size: 15px;
         padding: 5px 10px;
@@ -166,6 +166,7 @@
         flex-direction: column;
         width: 100%;
         align-items: center;
+        gap: 0px;
       }
       .intership-form-div .close{
         position: absolute;
