@@ -44,6 +44,9 @@ const UserSchema = new Schema({
     transactionid : {
       type : String,
       required : true
+    },
+    referralCode: {
+      type : String
     }
   },
   {

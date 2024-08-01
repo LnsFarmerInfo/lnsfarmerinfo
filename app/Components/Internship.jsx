@@ -33,7 +33,7 @@ const Internship = () => {
     e.preventDefault()
     setLoading(true)
     const resp = await axios.post('/api/payment', {
-      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester), usn: usn.toUpperCase()
+      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester), usn: usn.toUpperCase(),referralCode
     })
     setLoading(false)
     if (resp.data.message == 'user already exists') {
@@ -55,6 +55,7 @@ const Internship = () => {
   const [semester, setsemester] = useState("")
   const [collegeName, setcollegeName] = useState("")
   const [duration, setDuration] = useState('')
+  const [referralCode, setRefferalCode] = useState('')
   const [course, setcourse] = useState('1')
   const [price, setPrice] = useState('2999')
   const [loading, setLoading] = useState(false);
@@ -103,7 +104,7 @@ const Internship = () => {
         <form action="" onSubmit={onSubmit} className='internship-form'>
           <div><input type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} placeholder='your first name?' className='form-input' required />
             <input type="text" value={lastName} onChange={(e) => { setlastName(e.target.value) }} className='form-input' placeholder='your last name?' required /></div>
-          <input className='form-input' value={usn} onChange={(e) => { setusn(e.target.value) }} type="text" name="usn" placeholder='your USN?' id="" />
+          <input className='form-input' value={usn} onChange={(e) => { setusn(e.target.value.toUpperCase()) }} type="text" name="usn" placeholder='your USN?' id="" />
           <div className="flex flex-col !gap-2 !mb-4">
             <label htmlFor="course" className="text-2xl text-left"> Select the domain : </label>
             <select className='form-input !my-0' value={course} onChange={e => setcourse(e.target.value)} name="" id="course" required>
@@ -123,8 +124,8 @@ const Internship = () => {
           <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" required />
           <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" required />
           <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" required />
-          <label htmlFor="your current semester"></label>
           <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} required />
+          <input className='form-input' value={referralCode} onChange={e => { setRefferalCode(e.target.value.toLowerCase()) }} type="text" name="refferal" placeholder='if you have referral code, please mention' id="semester"  />
           <h1 className='text-2xl my-10 font-semibold'>Pre-registation fees - Rs. 999 /-</h1>
           <div className="flex justify-center items-center">
             {loading == true ? <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" className="h-16"></img> : <button type="submit">Pay Now</button>}
