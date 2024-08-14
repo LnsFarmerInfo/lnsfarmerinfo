@@ -83,7 +83,15 @@ const Internship = () => {
       description: "Join our team as a Full Stack Web Development Intern and dive into both the client and server sides of web applications. This role involves developing and integrating both front-end and back-end technologies to create comprehensive and dynamic web solutions.",
       responsibilities: ['Design and develop user interfaces using HTML, CSS, and JavaScript.', 'Build and maintain server-side applications and APIs using languages and frameworks such as Node.js, Python, or Ruby on Rails.', 'Collaborate with front-end developers, designers, and other team members to create cohesive and efficient web applications.', 'Optimize web applications for performance, scalability, and security.'],
       training_program: ['Intensive workshops on both front-end and back-end technologies, including frameworks like React, Vue.js, Node.js, and Express.', 'Hands-on projects to build full-stack applications from scratch.', 'Mentorship sessions on best practices in system design, database management, and web security.'],
-      price : 3999  
+      price : 3499  
+    },
+    {
+      image_url: "https://media.geeksforgeeks.org/wp-content/uploads/20230808160224/DSA.webp",
+      title: "Data Structures & Algorithm course",
+      description: "In the Data Structures and Algorithms Course, you'll immerse yourself in the foundational concepts essential for efficient programming and problem-solving. This course is tailored for individuals seeking to enhance their understanding of data organization, algorithm design, and computational efficiency. It’s perfect for those looking to build a solid base in computer science principles and prepare for technical interviews or advanced software development roles.",
+      responsibilities: ['Study and practice using arrays, linked lists, stacks, queues, trees, and graphs.', 'Understand and apply fundamental algorithms including sorting, searching, and optimization techniques.', 'Evaluate and improve the time and space complexity of your solutions.', 'Apply your knowledge to solve practical problems and coding challenges.'],
+      training_program: ['Gain comprehensive insights into various data structures and their applications.', 'Receive practical training on designing algorithms and analyzing their efficiency using Big O notation.', 'Engage in interactive coding exercises and projects to reinforce concepts and techniques.'],
+      price : 3999
     },
     {
       image_url: "/assets/machinelearning.jpg",
