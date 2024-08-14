@@ -119,14 +119,14 @@ const Internship = () => {
               <option value="1">Frontend Web Development</option>
               <option value="2">Backend Web Development</option>
               <option value="3">FullStack Web Development</option>
+              <option value="5">Data Structure & Algorithm course</option>
               <option value="4">Machine Learning</option>
-              <option value="5">FullStack Web Development</option>
             </select>
           </div>
           <div className="flex flex-col !gap-2">
             <label htmlFor="duration" className="text-2xl text-left"> Select the duration : </label>
             <select className='form-input !my-0' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="duration" required>
-              <option value="1">15 Weeks</option>
+              <option value="1">15 Weeks (as per VTU)</option>
               <option value="2">1 Months</option>
             </select>
           </div>
