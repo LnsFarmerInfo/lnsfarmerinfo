@@ -120,6 +120,7 @@ const Internship = () => {
               <option value="2">Backend Web Development</option>
               <option value="3">FullStack Web Development</option>
               <option value="4">Machine Learning</option>
+              <option value="5">FullStack Web Development</option>
             </select>
           </div>
           <div className="flex flex-col !gap-2">
