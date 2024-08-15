@@ -37,7 +37,7 @@ const Internship = () => {
     e.preventDefault()
     setLoading(true)
     const resp = await axios.post('/api/payment', {
-      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(duration + course), semester: Number(semester), usn: usn.toUpperCase(),referralCode
+      firstName, lastName, email, phoneNumber, collegeName, courseCode: Number(course + duration), semester: Number(semester), usn: usn.toUpperCase(),referralCode
     })
     setLoading(false)
     if (resp.data.message == 'user already exists') {
@@ -58,7 +58,7 @@ const Internship = () => {
   const [phoneNumber, setphoneNumber] = useState("")
   const [semester, setsemester] = useState("")
   const [collegeName, setcollegeName] = useState("")
-  const [duration, setDuration] = useState('')
+  const [duration, setDuration] = useState('1')
   const [referralCode, setRefferalCode] = useState('')
   const [course, setcourse] = useState('1')
   const [price, setPrice] = useState('2999')
@@ -90,19 +90,19 @@ const Internship = () => {
       price : 3499  
     },
     {
-      image_url: "https://media.geeksforgeeks.org/wp-content/uploads/20230808160224/DSA.webp",
-      title: "Data Structures & Algorithm course",
-      description: "In the Data Structures and Algorithms Course, you'll immerse yourself in the foundational concepts essential for efficient programming and problem-solving. This course is tailored for individuals seeking to enhance their understanding of data organization, algorithm design, and computational efficiency. It’s perfect for those looking to build a solid base in computer science principles and prepare for technical interviews or advanced software development roles.",
-      responsibilities: ['Study and practice using arrays, linked lists, stacks, queues, trees, and graphs.', 'Understand and apply fundamental algorithms including sorting, searching, and optimization techniques.', 'Evaluate and improve the time and space complexity of your solutions.', 'Apply your knowledge to solve practical problems and coding challenges.'],
-      training_program: ['Gain comprehensive insights into various data structures and their applications.', 'Receive practical training on designing algorithms and analyzing their efficiency using Big O notation.', 'Engage in interactive coding exercises and projects to reinforce concepts and techniques.'],
-      price : 3999
-    },
-    {
       image_url: "/assets/machinelearning.jpg",
       title: "Machine Learning Engineer Intern",
       description: "As a Machine Learning Engineer Intern, you'll focus on developing and optimizing machine learning models that can be integrated into various applications. This role is ideal for those looking to deepen their knowledge of machine learning algorithms and data analysis techniques.",
       responsibilities: ['Design, train, and evaluate machine learning models for specific applications.', 'Analyze and preprocess data to improve model accuracy and performance.', 'Work with software engineers to integrate machine learning models into production systems.', 'Conduct experiments and document findings to support ongoing development.'],
       training_program: ['Comprehensive training on machine learning algorithms and techniques.', 'Practical experience with data preprocessing, model training, and evaluation.', 'Workshops on deploying machine learning models in real-world scenarios.'],
+      price : 3999
+    },
+    {
+      image_url: "https://media.geeksforgeeks.org/wp-content/uploads/20230808160224/DSA.webp",
+      title: "Data Structures & Algorithm course",
+      description: "In the Data Structures and Algorithms Course, you'll immerse yourself in the foundational concepts essential for efficient programming and problem-solving. This course is tailored for individuals seeking to enhance their understanding of data organization, algorithm design, and computational efficiency. It’s perfect for those looking to build a solid base in computer science principles and prepare for technical interviews or advanced software development roles.",
+      responsibilities: ['Study and practice using arrays, linked lists, stacks, queues, trees, and graphs.', 'Understand and apply fundamental algorithms including sorting, searching, and optimization techniques.', 'Evaluate and improve the time and space complexity of your solutions.', 'Apply your knowledge to solve practical problems and coding challenges.'],
+      training_program: ['Gain comprehensive insights into various data structures and their applications.', 'Receive practical training on designing algorithms and analyzing their efficiency using Big O notation.', 'Engage in interactive coding exercises and projects to reinforce concepts and techniques.'],
       price : 3999
     },
     
@@ -123,8 +123,8 @@ const Internship = () => {
               <option value="1">Frontend Web Development</option>
               <option value="2">Backend Web Development</option>
               <option value="3">FullStack Web Development</option>
-              <option value="5">Data Structure & Algorithm course</option>
               <option value="4">Machine Learning</option>
+              <option value="5">Data Structure & Algorithm course</option>
             </select>
           </div>
           <div className="flex flex-col !gap-2">
