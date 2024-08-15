@@ -1,18 +1,22 @@
 'use client'
-import sha256 from "crypto-js/sha256";
-import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import { useRouter,useSearchParams } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast';
 const Internship = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const ref = searchParams.get('ref')
   useEffect(() => {
+    if(ref){
+      setRefferalCode(ref.toString())
+    }
+    console.log(referralCode)
     axios.get('/api/get-count')
     .then(resp => resp.data.count)
-    .then(count => {setInternCount(12+count)})
+    .then(count => {console.log(count ); setInternCount(12+count)})
     const closeBtn = document.querySelector('.close');
     const overlayEl = document.querySelector('.overlay');
     const internshipDiv = document.querySelector('.intership-form-div')
@@ -134,7 +138,7 @@ const Internship = () => {
           <input className='form-input' value={phoneNumber} onChange={(e) => { setphoneNumber(e.target.value) }} type="text" name="phone-number" placeholder='your Phone Number?' id="" required />
           <input className='form-input' value={collegeName} onChange={e => { setcollegeName(e.target.value) }} type="text" name="college-name" placeholder='your College name?' id="" required />
           <input className='form-input' value={semester} onChange={e => { setsemester(e.target.value) }} type="number" name="semester" placeholder='your Current Semester?' id="semester" max={8} min={1} required />
-          <input className='form-input' value={referralCode} onChange={e => { setRefferalCode(e.target.value.toLowerCase()) }} type="text" name="refferal" placeholder='if you have referral code, please mention' id="semester"  />
+          <input className='form-input' value={ref ? ref : referralCode} onChange={e => { setRefferalCode(e.target.value.toLowerCase()) }} type="text" name="refferal" placeholder='if you have referral code, please mention' id="semester"  />
           <h1 className='text-2xl my-10 font-semibold'>Pre-registation fees - Rs. 999 /-</h1>
           <div className="flex justify-center items-center">
             {loading == true ? <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" className="h-16"></img> : <button type="submit">Pay Now</button>}
