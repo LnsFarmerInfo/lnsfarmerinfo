@@ -13,7 +13,13 @@ const Internship = () => {
     if(ref){
       setRefferalCode(ref.toString())
     }
-    axios.get('/api/get-count')
+    axios.get(`/api/get-count?_=${new Date()}`,{
+      headers : {
+        'Cache-Control' : 'no-cache',
+        'Pragma' : 'no-cache',
+        'Expires' : '0'
+      }
+    })
     .then(resp => resp.data.count)
     .then(count => {setInternCount(25+count)})
     const closeBtn = document.querySelector('.close');
