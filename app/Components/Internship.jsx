@@ -15,7 +15,7 @@ const Internship = () => {
     }
     axios.get('/api/get-count')
     .then(resp => resp.data.count)
-    .then(count => {setInternCount(12+count)})
+    .then(count => {setInternCount(25+count)})
     const closeBtn = document.querySelector('.close');
     const overlayEl = document.querySelector('.overlay');
     const internshipDiv = document.querySelector('.intership-form-div')
