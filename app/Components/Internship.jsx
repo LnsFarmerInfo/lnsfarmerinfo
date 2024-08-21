@@ -136,7 +136,7 @@ const Internship = () => {
             <label htmlFor="duration" className="text-2xl text-left"> Select the duration : </label>
             <select className='form-input !my-0' value={duration} onChange={e => { setDuration(e.target.value); setPrice(e.target.value == '3' ? '2999' : '5999') }} name="" id="duration" required>
               <option value="1">15 Weeks (as per VTU)</option>
-              <option value="2">1 Months</option>
+              <option value="2">1 Month</option>
             </select>
           </div>
           <input className='form-input' value={email} onChange={(e) => { setemail(e.target.value) }} type="email" name="email" placeholder='your email address?' id="" required />
