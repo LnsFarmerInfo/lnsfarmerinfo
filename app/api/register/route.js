@@ -32,7 +32,7 @@ export async function POST(req, res) {
               name: data.firstName + " " + data.lastName,
               email: data.email,
               role: courses[courseIndex],
-              startDate: "15th Sept, 2024",
+              startDate: "9th Sept, 2024",
               usn: data.usn,
             }
           )
