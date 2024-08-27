@@ -5,7 +5,7 @@ import Footer from './Footer'
 import axios from 'axios'
 import { useRouter,useSearchParams } from 'next/navigation'
 import toast, { Toaster } from 'react-hot-toast';
-const Internship = () => {
+const Internship = ({count}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref')
@@ -13,15 +13,6 @@ const Internship = () => {
     if(ref){
       setRefferalCode(ref.toString())
     }
-    axios.get(`/api/get-count?_=${new Date()}`,{
-      headers : {
-        'Cache-Control' : 'no-cache',
-        'Pragma' : 'no-cache',
-        'Expires' : '0'
-      }
-    })
-    .then(resp => resp.data.count)
-    .then(count => {setInternCount(25+count)})
     const closeBtn = document.querySelector('.close');
     const overlayEl = document.querySelector('.overlay');
     const internshipDiv = document.querySelector('.intership-form-div')
@@ -154,7 +145,7 @@ const Internship = () => {
         <Navbar internship='true' />  
         <div className='internship-container'>
           <div className="mb-10">
-            <h1 className="text-2xl text-center bg-green-50 py-5 font-semibold">Live count of interns : {internCount}</h1>
+            <h1 className="text-2xl text-center bg-green-50 py-5 font-semibold">Live count of interns : {count+25}</h1>
           </div>
           <div className="flex flex-wrap gap-10 justify-center">
             {

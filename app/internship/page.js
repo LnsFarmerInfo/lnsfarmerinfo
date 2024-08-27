@@ -1,9 +1,18 @@
 import React from 'react'
 import Internship from '../Components/Internship'
+import User from '@/models/User'
+import { connectDB } from '@/lib/mongodb'
 
-const page = () => {
+await connectDB();
+async function getCount(){
+  const resp = await User.find()
+  console.log(resp.length)
+  return resp.length
+}
+const page = async () => {
+  const count = await getCount()
   return (
-    <Internship/>
+    <Internship count={count}/>
   )
 }
 
