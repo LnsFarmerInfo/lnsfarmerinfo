@@ -67,7 +67,7 @@ const Internship = ({count}) => {
       description: "Join our team as a Front-End Web Development Intern and immerse yourself in creating visually appealing and highly functional user interfaces. This role focuses on developing the client-side of web applications, using modern technologies to ensure responsive and user-friendly designs.",
       responsibilities: ['Design and implement user interfaces using HTML, CSS, and JavaScript.', 'Collaborate with designers and back-end developers to create seamless web experiences.', 'Optimize web applications for speed and performance.', 'Conduct user testing and gather feedback to enhance UI/UX.'],
       training_program: ['Intensive workshops on front-end technologies and frameworks like React or Vue.js.', 'Hands-on projects to build responsive and interactive web interfaces.', 'Mentorship sessions on best practices in user experience and accessibility.'],
-      price : 2499
+      price : 3499
     },
     {
       image_url: "/assets/backend.png",
@@ -75,7 +75,7 @@ const Internship = ({count}) => {
       description: "As a Back-End Web Development Intern, you'll be responsible for the server-side logic and database management of web applications. This internship offers hands-on experience in building and maintaining robust back-end systems that power dynamic web applications.",
       responsibilities: ['Develop and manage server-side components using languages such as Node.js, Python, or Ruby.', 'Work with databases (SQL or NoSQL) to design and implement efficient data storage solutions.', 'Integrate APIs and third-party services into web applications.', 'Troubleshoot and optimize server performance and security.'],
       training_program: ['Training on server-side programming languages and database management systems.', 'Projects focused on API development and integration.', 'Sessions on performance optimization and security best practices.'],
-      price : 2499
+      price : 3499
     },
     {
       image_url: "https://miro.medium.com/v2/resize:fit:1400/0*cl7fc6pt1MHjIF4K.png",
@@ -83,7 +83,7 @@ const Internship = ({count}) => {
       description: "Join our team as a Full Stack Web Development Intern and dive into both the client and server sides of web applications. This role involves developing and integrating both front-end and back-end technologies to create comprehensive and dynamic web solutions.",
       responsibilities: ['Design and develop user interfaces using HTML, CSS, and JavaScript.', 'Build and maintain server-side applications and APIs using languages and frameworks such as Node.js, Python, or Ruby on Rails.', 'Collaborate with front-end developers, designers, and other team members to create cohesive and efficient web applications.', 'Optimize web applications for performance, scalability, and security.'],
       training_program: ['Intensive workshops on both front-end and back-end technologies, including frameworks like React, Vue.js, Node.js, and Express.', 'Hands-on projects to build full-stack applications from scratch.', 'Mentorship sessions on best practices in system design, database management, and web security.'],
-      price : 2499  
+      price : 3499  
     },
     {
       image_url: "/assets/machinelearning.jpg",

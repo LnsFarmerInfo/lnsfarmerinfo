@@ -33,7 +33,7 @@ const Navbar = (props) => {
             <li><a href="/">HOME</a></li>
             {props.internship == "true" ? <><li><a href='/internship/instructions' className='uppercase'>Instructions</a></li></> : <><li><a href="#section-2">INNOVATIONS</a></li>
               <li><a href="#section-3">ABOUT</a></li>
-              <li><a href='/internship'>INTERNSHIPS</a></li>
+              {/* <li><a href='/internship'>INTERNSHIPS</a></li> */}
             </>}
           </ul>
         </div>
@@ -43,7 +43,7 @@ const Navbar = (props) => {
           {props.internship == "true" ? <><li><a href='/internship/instructions'>Instructions</a></li></> : <><li><a href="#section-2">INNOVATIONS</a></li>
             <li><a href="#section-3">ABOUT</a></li>
 
-            <li><a href='/internship'>INTERNSHIPS</a></li>
+            {/* <li><a href='/internship'>INTERNSHIPS</a></li> */}
 
 
           </>}
